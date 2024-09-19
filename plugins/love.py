@@ -47,10 +47,9 @@ def love_command(client, message):
         response = "Please enter two names after /love command."
     app.send_message(message.chat.id, response)
 
+__MODULE__ = "Love"
+__HELP__ = """<blockquote><b>
+**love calculator:**
 
-__MODULE__ = "Lᴏᴠᴇ"
-__HELP__ = """
-**ʟᴏᴠᴇ ᴄᴀʟᴄᴜʟᴀᴛᴏʀ:**
-
-• `/love [name1] [name2]`: Cᴀʟᴄᴜʟᴀᴛᴇs ᴛʜᴇ ᴘᴇʀᴄᴇɴᴛᴀɢᴇ ᴏғ ʟᴏᴠᴇ ʙᴇᴛᴡᴇᴇɴ ᴛᴡᴏ ᴘᴇᴏᴘʟᴇ.
-"""
+• `/love [name1] [name2]`: Calculates the percentage of love between two people.
+</b></blockquote>"""
