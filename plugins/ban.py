@@ -30,8 +30,8 @@ from config import BANNED_USERS
 
 warnsdb = mongodb.warns
 
-__MODULE__ = "Bᴀɴ"
-__HELP__ = """
+__MODULE__ = "Ban"
+__HELP__ = """<blockquote><b>
 /ban - Ban A User
 /sban - Delete all messages of user that sended in group and ban the user
 /tban - Ban A User For Specific Time
@@ -49,14 +49,14 @@ __HELP__ = """
 /fullpromote - Promote A Member With All Rights
 /demote - Demote A Member
 /pin - Pin A Message
-/unpin - unpin a message
-/unpinall - unpinall messages
+/unpin - unpin a message 
+/unpinall - unpinall messages 
 /mute - Mute A User
 /tmute - Mute A User For Specific Time
 /unmute - Unmute A User
 /zombies - Ban Deleted Accounts
 /report | @admins | @admin - Report A Message To Admins.
-/link - Send in Group/SuperGroup Invite Link."""
+/link - Send in Group/SuperGroup Invite Link.</b></blockquote>"""
 
 
 async def int_to_alpha(user_id: int) -> str:
