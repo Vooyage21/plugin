@@ -48,15 +48,14 @@ async def pypi_info_command(client, message):
             "Please provide a package name after the /pypi command."
         )
 
+__MODULE__ = "Pypi"
+__HELP__ = """<blockquote>
+<b>commands:
+• <code>/pypi <package_name></code>: Get details about a specified Python package from PyPI.
 
-__MODULE__ = "Pʏᴘɪ"
-__HELP__ = """
-**ᴄᴏᴍᴍᴀɴᴅs:**
-• /pypi <package_name>`: Get details about a specified Python package from PyPI.
+info:
+this module allows users to fetch information about python packages from pypi, including the package name, latest version, description, and project url.
 
-**ɪɴғᴏ:**
-ᴛʜɪs ᴍᴏᴅᴜʟᴇ ᴀʟʟᴏᴡs ᴜsᴇʀs ᴛᴏ ғᴇᴛᴄʜ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴘʏᴛʜᴏɴ ᴘᴀᴄᴋᴀɢᴇs ғʀᴏᴍ ᴘʏᴘɪ, ɪɴᴄʟᴜᴅɪɴɢ ᴛʜᴇ ᴘᴀᴄᴋᴀɢᴇ ɴᴀᴍᴇ, ʟᴀᴛᴇsᴛ ᴠᴇʀsɪᴏɴ, ᴅᴇsᴄʀɪᴘᴛɪᴏɴ, ᴀɴᴅ ᴘʀᴏᴊᴇᴄᴛ ᴜʀʟ.
-
-**ɴᴏᴛᴇ:**
-ᴘʟᴇᴀsᴇ ᴘʀᴏᴠɪᴅᴇ ᴀ ᴠᴀʟɪᴅ ᴘᴀᴄᴋᴀɢᴇ ɴᴀᴍᴇ ᴀғᴛᴇʀ ᴛʜᴇ `/pypi` ᴄᴏᴍᴍᴀɴᴅ ᴛᴏ ʀᴇᴛʀɪᴇᴠᴇ ᴘᴀᴄᴋᴀɢᴇ ᴅᴇᴛᴀɪʟs.
-"""
+note:
+please provide a valid package name after the <code>/pypi</code> command to retrieve package details.
+</b></blockquote>"""
