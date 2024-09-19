@@ -1,78 +1,73 @@
 from pyrogram import enums, filters
 
 from YukkiMusic import app
-from YukkiMusic.utils.filter import admin_filter
-
-# ------------------------------------------------------------------------------- #
+from utils.permissions import adminsOnly
 
 
-@app.on_message(filters.command("removephoto") & admin_filter)
+@app.on_message(filters.command("removephoto"))
+@adminsOnly("can_change_info")
 async def deletechatphoto(_, message):
 
     chat_id = message.chat.id
     user_id = message.from_user.id
-    msg = await message.reply_text("**processing....**")
+    msg = await message.reply_text("**ᴘʀᴏᴄᴇssɪɴɢ....**")
     admin_check = await app.get_chat_member(chat_id, user_id)
     if message.chat.type == enums.ChatType.PRIVATE:
-        await msg.edit("**this command work on groups !**")
+        await msg.edit("**ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ ᴡᴏʀᴋ ᴏɴ ɢʀᴏᴜᴘs !**")
     try:
         if admin_check.privileges.can_change_info:
             await app.delete_chat_photo(chat_id)
             await msg.edit(
-                "**groups  profile photo removed  !\nby** {}".format(
+                "**ɢʀᴏᴜᴘs  ᴘʀᴏғɪʟᴇ ᴘʜᴏᴛᴏ ʀᴇᴍᴏᴠᴇᴅ  !\nʙʏ** {}".format(
                     message.from_user.mention
                 )
             )
-    except:
+    except BaseException:
         await msg.edit(
-            "**the user most need change info admin rights to remove group photo !**"
+            "**ᴛʜᴇ ᴜsᴇʀ ᴍᴏsᴛ ɴᴇᴇᴅ ᴄʜᴀɴɢᴇ ɪɴғᴏ ᴀᴅᴍɪɴ ʀɪɢʜᴛs ᴛᴏ ʀᴇᴍᴏᴠᴇ ɢʀᴏᴜᴘ ᴘʜᴏᴛᴏ !**"
         )
 
 
-# --------------------------------------------------------------------------------- #
-
-
-@app.on_message(filters.command("setphoto") & admin_filter)
+@app.on_message(filters.command("setphoto"))
+@adminsOnly("can_change_info")
 async def setchatphoto(_, message):
     reply = message.reply_to_message
     chat_id = message.chat.id
     user_id = message.from_user.id
-    msg = await message.reply_text("processing...")
+    msg = await message.reply_text("ᴘʀᴏᴄᴇssɪɴɢ...")
     admin_check = await app.get_chat_member(chat_id, user_id)
     if message.chat.type == enums.ChatType.PRIVATE:
-        await msg.edit("`this command work on groups !`")
+        await msg.edit("`ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ ᴡᴏʀᴋ ᴏɴ ɢʀᴏᴜᴘs !`")
     elif not reply:
-        await msg.edit("**reply to a photo or document.**")
+        await msg.edit("**ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴘʜᴏᴛᴏ ᴏʀ ᴅᴏᴄᴜᴍᴇɴᴛ.**")
     elif reply:
         try:
             if admin_check.privileges.can_change_info:
                 photo = await reply.download()
                 await message.chat.set_photo(photo=photo)
                 await msg.edit_text(
-                    "**new group profile photo changed !\nby** {}".format(
+                    "**ɴᴇᴡ ɢʀᴏᴜᴘ ᴘʀᴏғɪʟᴇ ᴘʜᴏᴛᴏ ᴄʜᴀɴɢᴇᴅ !\nʙʏ** {}".format(
                         message.from_user.mention
                     )
                 )
             else:
-                await msg.edit("**something wrong happened try another photo !**")
+                await msg.edit("**sᴏᴍᴇᴛʜɪɴɢ ᴡʀᴏɴɢ ʜᴀᴘᴘᴇɴᴇᴅ ᴛʀʏ ᴀɴᴏᴛʜᴇʀ ᴘʜᴏᴛᴏ !**")
 
-        except:
+        except BaseException:
             await msg.edit(
-                "**the user most need change info admin rights to change group photo !**"
+                "**ᴛʜᴇ ᴜsᴇʀ ᴍᴏsᴛ ɴᴇᴇᴅ ᴄʜᴀɴɢᴇ ɪɴғᴏ ᴀᴅᴍɪɴ ʀɪɢʜᴛs ᴛᴏ ᴄʜᴀɴɢᴇ ɢʀᴏᴜᴘ ᴘʜᴏᴛᴏ !**"
             )
 
 
-# --------------------------------------------------------------------------------- #
-
-
-@app.on_message(filters.command("settitle") & admin_filter)
+@app.on_message(filters.command("settitle"))
+@adminsOnly("can_change_info")
 async def setgrouptitle(_, message):
     reply = message.reply_to_message
     chat_id = message.chat.id
     user_id = message.from_user.id
-    msg = await message.reply_text("processing...")
+    msg = await message.reply_text("ᴘʀᴏᴄᴇssɪɴɢ...")
     if message.chat.type == enums.ChatType.PRIVATE:
-        await msg.edit("**this command work on groups !**")
+        await msg.edit("**ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ ᴡᴏʀᴋ ᴏɴ ɢʀᴏᴜᴘs !**")
     elif reply:
         try:
             title = message.reply_to_message.text
@@ -80,13 +75,13 @@ async def setgrouptitle(_, message):
             if admin_check.privileges.can_change_info:
                 await message.chat.set_title(title)
                 await msg.edit(
-                    "**new group name changed !\nby** {}".format(
+                    "**ɴᴇᴡ ɢʀᴏᴜᴘ ɴᴀᴍᴇ ᴄʜᴀɴɢᴇᴅ !\nʙʏ** {}".format(
                         message.from_user.mention
                     )
                 )
         except AttributeError:
             await msg.edit(
-                "the user most need **change info** admin rights to change group title !"
+                "ᴛʜᴇ ᴜsᴇʀ ᴍᴏsᴛ ɴᴇᴇᴅ **ᴄʜᴀɴɢᴇ ɪɴғᴏ** ᴀᴅᴍɪɴ ʀɪɢʜᴛs ᴛᴏ ᴄʜᴀɴɢᴇ ɢʀᴏᴜᴘ ᴛɪᴛʟᴇ !"
             )
     elif len(message.command) > 1:
         try:
@@ -95,32 +90,30 @@ async def setgrouptitle(_, message):
             if admin_check.privileges.can_change_info:
                 await message.chat.set_title(title)
                 await msg.edit(
-                    "**new group name changed !\nby** {}".format(
+                    "**ɴᴇᴡ ɢʀᴏᴜᴘ ɴᴀᴍᴇ ᴄʜᴀɴɢᴇᴅ !\nʙʏ** {}".format(
                         message.from_user.mention
                     )
                 )
         except AttributeError:
             await msg.edit(
-                "**the user most need change info admin rights to change group title !**"
+                "**ᴛʜᴇ ᴜsᴇʀ ᴍᴏsᴛ ɴᴇᴇᴅ ᴄʜᴀɴɢᴇ ɪɴғᴏ ᴀᴅᴍɪɴ ʀɪɢʜᴛs ᴛᴏ ᴄʜᴀɴɢᴇ ɢʀᴏᴜᴘ ᴛɪᴛʟᴇ !**"
             )
 
     else:
         await msg.edit(
-            "**you need reply to text or give some text to change group title **"
+            "**ʏᴏᴜ ɴᴇᴇᴅ ʀᴇᴘʟʏ ᴛᴏ ᴛᴇxᴛ ᴏʀ ɢɪᴠᴇ sᴏᴍᴇ ᴛᴇxᴛ ᴛᴏ ᴄʜᴀɴɢᴇ ɢʀᴏᴜᴘ ᴛɪᴛʟᴇ **"
         )
 
 
-# --------------------------------------------------------------------------------- #
-
-
-@app.on_message(filters.command(["setdiscription", "setdesc"]) & admin_filter)
+@app.on_message(filters.command(["setdiscription", "setdesc"]))
+@adminsOnly("can_change_info")
 async def setg_discription(_, message):
     reply = message.reply_to_message
     chat_id = message.chat.id
     user_id = message.from_user.id
-    msg = await message.reply_text("**processing...**")
+    msg = await message.reply_text("**ᴘʀᴏᴄᴇssɪɴɢ...**")
     if message.chat.type == enums.ChatType.PRIVATE:
-        await msg.edit("**this command works on groups!**")
+        await msg.edit("**ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ ᴡᴏʀᴋs ᴏɴ ɢʀᴏᴜᴘs!**")
     elif reply:
         try:
             discription = message.reply_to_message.text
@@ -128,13 +121,13 @@ async def setg_discription(_, message):
             if admin_check.privileges.can_change_info:
                 await message.chat.set_description(discription)
                 await msg.edit(
-                    "**new discription of group changed!**\nby {}".format(
+                    "**ɴᴇᴡ ᴅɪsᴄʀɪᴘᴛɪᴏɴ ᴏғ ɢʀᴏᴜᴘ ᴄʜᴀɴɢᴇᴅ!**\nʙʏ {}".format(
                         message.from_user.mention
                     )
                 )
         except AttributeError:
             await msg.edit(
-                "**the user must have change info admin rights to change group discription!**"
+                "**ᴛʜᴇ ᴜsᴇʀ ᴍᴜsᴛ ʜᴀᴠᴇ ᴄʜᴀɴɢᴇ ɪɴғᴏ ᴀᴅᴍɪɴ ʀɪɢʜᴛs ᴛᴏ ᴄʜᴀɴɢᴇ ɢʀᴏᴜᴘ ᴅɪsᴄʀɪᴘᴛɪᴏɴ!**"
             )
     elif len(message.command) > 1:
         try:
@@ -143,15 +136,15 @@ async def setg_discription(_, message):
             if admin_check.privileges.can_change_info:
                 await message.chat.set_description(discription)
                 await msg.edit(
-                    "**new discription of group changed!**\nby {}".format(
+                    "**ɴᴇᴡ ᴅɪsᴄʀɪᴘᴛɪᴏɴ ᴏғ ɢʀᴏᴜᴘ ᴄʜᴀɴɢᴇᴅ!**\nʙʏ {}".format(
                         message.from_user.mention
                     )
                 )
         except AttributeError:
             await msg.edit(
-                "**the user must have change info admin rights to change group discription!**"
+                "**ᴛʜᴇ ᴜsᴇʀ ᴍᴜsᴛ ʜᴀᴠᴇ ᴄʜᴀɴɢᴇ ɪɴғᴏ ᴀᴅᴍɪɴ ʀɪɢʜᴛs ᴛᴏ ᴄʜᴀɴɢᴇ ɢʀᴏᴜᴘ ᴅɪsᴄʀɪᴘᴛɪᴏɴ!**"
             )
     else:
         await msg.edit(
-            "**you need to reply to text or give some text to change group discripton!**"
+            "**ʏᴏᴜ ɴᴇᴇᴅ ᴛᴏ ʀᴇᴘʟʏ ᴛᴏ ᴛᴇxᴛ ᴏʀ ɢɪᴠᴇ sᴏᴍᴇ ᴛᴇxᴛ ᴛᴏ ᴄʜᴀɴɢᴇ ɢʀᴏᴜᴘ ᴅɪsᴄʀɪᴘᴛᴏɴ!**"
         )
