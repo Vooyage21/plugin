@@ -24,9 +24,9 @@ async def chatgpt_chat(bot, message):
     await message.reply_text(results)
 
 
-__MODULE__ = "CʜᴀᴛGᴘᴛ"
-__HELP__ = """
-/advice - ɢᴇᴛ ʀᴀɴᴅᴏᴍ ᴀᴅᴠɪᴄᴇ ʙʏ ʙᴏᴛ
-/ai [ǫᴜᴇʀʏ] - ᴀsᴋ ʏᴏᴜʀ ǫᴜᴇsᴛɪᴏɴ ᴡɪᴛʜ ᴄʜᴀᴛɢᴘᴛ's ᴀɪ
-/gemini [ǫᴜᴇʀʏ] - ᴀsᴋ ʏᴏᴜʀ ǫᴜᴇsᴛɪᴏɴ ᴡɪᴛʜ ɢᴏᴏɢʟᴇ's ɢᴇᴍɪɴɪ ᴀɪ
-/bard [ǫᴜᴇʀʏ] -ᴀsᴋ ʏᴏᴜʀ ǫᴜᴇsᴛɪᴏɴ ᴡɪᴛʜ ɢᴏᴏɢʟᴇ's ʙᴀʀᴅ ᴀɪ"""
+__MODULE__ = "ChatGPT"
+__HELP__ = """<blockquote><b>
+/advice - get random advice by bot
+/ai [query] - ask your question with chatgpt's ai
+/gemini [query] - ask your question with google's gemini ai
+/bard [query] -ask your question with google's bard ai.</b></blockquote>"""
