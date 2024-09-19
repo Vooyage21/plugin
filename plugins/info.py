@@ -177,11 +177,10 @@ async def chat_info_func(_, message: Message):
     except Exception as e:
         await m.edit(e)
 
+__MODULE__ = "Info"
+__HELP__ = """<blockquote><b>
+**user & chat information:**
 
-__MODULE__ = "Iɴғᴏ"
-__HELP__ = """
-**ᴜsᴇʀ & ᴄʜᴀᴛ ɪɴғᴏʀᴍᴀᴛɪᴏɴ:**
-
-• `/info`: Gᴇᴛ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴛʜᴇ ᴜsᴇʀ. Usᴇʀɴᴀᴍᴇ, ID, ᴀɴᴅ ᴍᴏʀᴇ.
-• `/chatinfo [ᴜsᴇʀɴᴀᴍᴇ|ɪᴅ]`: Gᴇᴛ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴛʜᴇ ᴄʜᴀᴛ. ᴍᴇᴍʙᴇʀ ᴄᴏᴜɴᴛ, ɪs ᴠᴇʀɪғɪᴇᴅ, ɪɴᴠɪᴛᴇ ʟɪɴᴋ, ᴀɴᴅ ᴍᴏʀᴇ.
-"""
+• `/info`: Get information about the user. Username, ID, and more.
+• `/chatinfo [username|id]`: Get information about the chat. member count, is verified, invite link, and more.
+</b></blockquote>"""
