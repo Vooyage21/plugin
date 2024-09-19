@@ -50,20 +50,19 @@ def web_download(client, message):
             file.write(source_code)
         message.reply_document(document="website.txt", caption=f"Source code of {url}")
 
+__MODULE__ = "Web"
+__HELP__ = """<blockquote><b>
+**command:**
 
-__MODULE__ = "Wᴇʙᴅʟ"
-__HELP__ = """
-**ᴄᴏᴍᴍᴀɴᴅ:**
+• /webdl - **download website source code.**
 
-• /webdl - **ᴅᴏᴡɴʟᴏᴀᴅ ᴡᴇʙsɪᴛᴇ sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ.**
+**info:**
 
-**ɪɴғᴏ:**
+- this bot provides a command to download the source code of a website.
+- use /webdl command with a url to download the source code of the website.
 
-- ᴛʜɪs ʙᴏᴛ ᴘʀᴏᴠɪᴅᴇs ᴀ ᴄᴏᴍᴍᴀɴᴅ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ ᴛʜᴇ sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ ᴏғ ᴀ ᴡᴇʙsɪᴛᴇ.
-- ᴜsᴇ /webdl ᴄᴏᴍᴍᴀɴᴅ ᴡɪᴛʜ ᴀ ᴜʀʟ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ ᴛʜᴇ sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ ᴏғ ᴛʜᴇ ᴡᴇʙsɪᴛᴇ.
+**note:**
 
-**ɴᴏᴛᴇ:**
-
-- ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ ᴄᴀɴ ʙᴇ ᴜsᴇᴅ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ ᴡᴇʙsɪᴛᴇ sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ.
-- ᴛʜᴇ sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ ᴡɪʟʟ ʙᴇ sᴀᴠᴇᴅ ᴀs ᴀ ᴅᴏᴄᴜᴍᴇɴᴛ ᴀɴᴅ sᴇɴᴛ ᴀs ᴀ ᴅᴏᴄᴜᴍᴇɴᴛ ᴛᴏ ᴛʜᴇ ᴄʜᴀᴛ.
+- this command can be used to download website source code.
+- the source code will be saved as a document and sent as a document to the chat.</b></blockquote>
 """
