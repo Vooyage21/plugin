@@ -22,17 +22,16 @@ async def write(client, message):
     except Exception as e:
         await nan.edit(e)
 
-
-__MODULE__ = "Wʀɪᴛᴇ"
-__HELP__ = """
+__MODULE__ = "Write"
+__HELP__ = """<blockquote><b>
 **COMMANDS**:
-- /write: ᴡʀɪᴛᴇ ᴛᴇxᴛ ᴏɴ ᴀɴ ᴄʟᴏᴜᴅ ᴀɴᴅ ɢᴇᴛ ᴀɴ ᴇᴅɪᴛᴇᴅ ᴘʜᴏᴛᴏ.
+- /write: write text on an cloud and get an edited photo.
 
 **INFO**:
-- ᴍᴏᴅᴜʟᴇ ɴᴀᴍᴇ: ᴡʀɪᴛᴇ
-- ᴅᴇsᴄʀɪᴘᴛɪᴏɴ: ᴡʀɪᴛᴇ ᴛᴇxᴛ ᴏɴ ᴀɴ ᴄʟᴏᴜᴅ ᴀɴᴅ ɢᴇᴛ ᴀɴ ᴇᴅɪᴛᴇᴅ ᴘʜᴏᴛᴏ.
-- ᴄᴏᴍᴍᴀɴᴅs: /write
-- ᴘᴇʀᴍɪssɪᴏɴs ɴᴇᴇᴅᴇᴅ: ɴᴏɴᴇ
+- module name: write
+- description: write text on an cloud and get an edited photo.
+- commands: /write
+- permissions needed: none
 
 **NOTE**:
-- ᴜsᴇ ᴅɪʀᴇᴄᴛʟʏ ɪɴ ᴀ ɢʀᴏᴜᴘ ᴄʜᴀᴛ ᴡɪᴛʜ ᴍᴇ ғᴏʀ ᴛʜᴇ ʙᴇsᴛ ʀᴇsᴜʟᴛs."""
+- use directly in a group chat with me for the best results.</b></blockquote>"""
