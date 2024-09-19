@@ -89,16 +89,16 @@ async def remove(client, message):
         await asyncio.sleep(e.value)
 
 
-__MODULE__ = "Zᴏᴍʙɪᴇs"
-__HELP__ = """
+__MODULE__ = "Zombies"
+__HELP__ = """<blockquote><b>
 **commands:**
-- /zombies: ʀᴇᴍᴏᴠᴇ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛs ғʀᴏᴍ ᴛʜᴇ ɢʀᴏᴜᴘ.
+- /zombies: remove deleted accounts from the group.
 
 **info:**
-- ᴍᴏᴅᴜʟᴇ ɴᴀᴍᴇ: ʀᴇᴍᴏᴠᴇ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛs
-- ᴅᴇsᴄʀɪᴘᴛɪᴏɴ: ʀᴇᴍᴏᴠᴇ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛs ғʀᴏᴍ ᴛʜᴇ ɢʀᴏᴜᴘ.
-- ᴄᴏᴍᴍᴀɴᴅs: /zombies
-- ᴘᴇʀᴍɪssɪᴏɴs ɴᴇᴇᴅᴇᴅ: ᴄᴀɴ ʀᴇsᴛʀɪᴄᴛ ᴍᴇᴍʙᴇʀs
+- module name: remove deleted accounts
+- description: remove deleted accounts from the group.
+- commands: /zombies
+- permissions needed: can restrict members
 
 **note:**
-- ᴜsᴇ ᴅɪʀᴇᴄᴛʟʏ ɪɴ ᴀ ɢʀᴏᴜᴘ ᴄʜᴀᴛ ᴡɪᴛʜ ᴍᴇ ғᴏʀ ʙᴇsᴛ ᴇғғᴇᴄᴛ. ᴏɴʟʏ ᴀᴅᴍɪɴs ᴄᴀɴ ᴇxᴇᴄᴜᴛᴇ ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ."""
+- use directly in a group chat with me for best effect. only admins can execute this command.</b></blockquote>"""
