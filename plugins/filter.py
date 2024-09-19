@@ -2,13 +2,16 @@ import re
 import datetime
 from pyrogram import filters
 from pyrogram.types import (
+    CallbackQuery,
     InlineKeyboardButton,
     InlineKeyboardMarkup,
 )
 
+from typing import Dict, List, Union
 from YukkiMusic import app
+from YukkiMusic.core.mongo import mongodb
 from utils.error import capture_err
-from utils.permissions import adminsOnly, member_permissions
+from YukkiMusic.utils.permissions import adminsOnly, member_permissions
 from YukkiMusic.utils.keyboard import ikb
 from .notes import extract_urls
 from YukkiMusic.utils.functions import (
@@ -17,6 +20,7 @@ from YukkiMusic.utils.functions import (
     get_data_and_name,
 )
 from YukkiMusic.utils.database import (
+    delete_filter,
     deleteall_filters,
     get_filter,
     get_filters_names,
@@ -27,7 +31,7 @@ from config import BANNED_USERS
 
 
 __MODULE__ = "Filters"
-__HELP__ = """/filters To Get All The Filters In The Chat.
+__HELP__ = """<blockquote><b>/filters To Get All The Filters In The Chat.
 /filter [FILTER_NAME] To Save A Filter(reply to a message).
 
 Supported filter types are Text, Animation, Photo, Document, Video, video notes, Audio, Voice.
@@ -41,28 +45,24 @@ To use more words in a filter use.
 You can use markdown or html to save text too.
 
 Checkout /markdownhelp to know more about formattings and other syntax.
-"""
-
-
+</b></blockquote>"""
 @app.on_message(filters.command("filter") & ~filters.private & ~BANNED_USERS)
 @adminsOnly("can_change_info")
 async def save_filters(_, message):
     try:
         if len(message.command) < 2:
             return await message.reply_text(
-                "**ᴜsᴀsɢᴇ:**\nʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇssᴀɢᴇ ᴡɪᴛʜ  /filter [FILTER_NAME] [CONTENT] ᴛᴏ sᴇᴛ ᴀ ɴᴇᴡ ғɪʟᴛᴇʀ."
+                "**usasge:**\nreply to a message with  /filter [FILTER_NAME] [CONTENT] to set a new filter."
             )
         replied_message = message.reply_to_message
         if not replied_message:
             replied_message = message
         data, name = await get_data_and_name(replied_message, message)
         if len(name) < 2:
-            return await message.reply_text(
-                f"ᴛᴏ ғɪʟᴛᴇʀ ᴛʜᴇ {name} ᴍᴜsᴛ ʙᴇ ɢʀᴇᴀᴛᴇʀ ᴛʜᴇɴ 𝟸 ᴡᴏʀᴅs"
-            )
+            return await message.reply_text(f"to filter the {name} must be greater then 𝟸 words")
         if data == "error":
             return await message.reply_text(
-                "**ᴜsᴀsɢᴇ:**\n__/filter [FILTER_NAME] [CONTENT]__\n`-----------OR-----------`\nʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇssᴀɢᴇ ᴡɪᴛʜ. \n/filter [FILTER_NAME]."
+                "**usasge:**\n__/filter [FILTER_NAME] [CONTENT]__\n`-----------OR-----------`\nreply to a message with. \n/filter [FILTER_NAME]."
             )
         if replied_message.text:
             _type = "text"
@@ -102,7 +102,7 @@ async def save_filters(_, message):
             data = await check_format(ikb, data)
             if not data:
                 return await message.reply_text(
-                    "**ᴡʀᴏɴɢ ғᴏʀᴍᴀᴛᴛɪɴɢ, ᴄʜᴇᴄᴋ ᴛʜᴇ ʜᴇʟᴘ sᴇᴄᴛɪᴏɴ.**"
+                    "**wrong formatting, check the help section.**"
                 )
         name = name.replace("_", " ")
         _filter = {
@@ -110,13 +110,13 @@ async def save_filters(_, message):
             "data": data,
             "file_id": file_id,
         }
-
+        
         chat_id = message.chat.id
         await save_filter(chat_id, name, _filter)
-        return await message.reply_text(f"__**sᴀᴠᴇᴅ ғɪʟᴛᴇʀ {name}.**__")
+        return await message.reply_text(f"__**saved filter {name}.**__")
     except UnboundLocalError:
         return await message.reply_text(
-            "**ʀᴇᴘʟɪᴇᴅ ᴍᴇssᴀɢᴇ ɪs ɪɴᴀᴄᴇssᴀʙʟᴇ.\n`ғᴏʀᴡᴀʀᴅ ᴛʜᴇ ᴍᴇssᴀɢᴇ ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ.`**"
+            "**replied message is inacessable.\n`forward the message and try again.`**"
         )
 
 
@@ -125,23 +125,15 @@ async def save_filters(_, message):
 async def get_filterss(_, message):
     _filters = await get_filters_names(message.chat.id)
     if not _filters:
-        return await message.reply_text("**ɴᴏ ғɪʟᴛᴇʀs ɪɴ ᴛʜᴇ ᴄʜᴀᴛ.**")
+        return await message.reply_text("**no filters in the chat.**")
     _filters.sort()
-    msg = f"ʟɪsᴛ ᴏғ ғɪʟᴛᴇʀs ɪɴ ᴛʜᴇ **{message.chat.title}** :\n"
+    msg = f"list of filters in the **{message.chat.title}** :\n"
     for _filter in _filters:
         msg += f"**-** `{_filter}`\n"
     await message.reply_text(msg)
 
-
 @app.on_message(
-    filters.text
-    & ~filters.private
-    & ~filters.channel
-    & ~filters.via_bot
-    & ~filters.forwarded
-    & ~BANNED_USERS,
-    group=1,
-)
+    filters.text & ~filters.private & ~filters.channel & ~filters.via_bot & ~filters.forwarded & ~BANNED_USERS, group=1)
 @capture_err
 async def filters_re(_, message):
     from_user = message.from_user if message.from_user else message.sender_chat
@@ -178,7 +170,7 @@ async def filters_re(_, message):
                     susername = message.from_user.username or "None"
                     data = data.replace("{USERNAME}", susername)
                 if "{DATE}" in data:
-                    DATE = datetime.datetime.now().strftime("%Y-%m-%d")
+                    DATE = datetime.datetime.now().strftime("%Y-%m-%d")        
                     data = data.replace("{DATE}", DATE)
                 if "{WEEKDAY}" in data:
                     WEEKDAY = datetime.datetime.now().strftime("%A")
@@ -193,11 +185,7 @@ async def filters_re(_, message):
                         data, keyb = keyboard
             replied_message = message.reply_to_message
             if replied_message:
-                replied_user = (
-                    replied_message.from_user
-                    if replied_message.from_user
-                    else replied_message.sender_chat
-                )
+                replied_user = replied_message.from_user if replied_message.from_user else replied_message.sender_chat
                 if text.startswith("~"):
                     await message.delete()
                 if replied_user.id != from_user.id:
@@ -264,18 +252,20 @@ async def filters_re(_, message):
 async def stop_all(_, message):
     _filters = await get_filters_names(message.chat.id)
     if not _filters:
-        await message.reply_text("**ɴᴏ ғɪʟᴛᴇʀs ɪɴ ᴛʜɪs ᴄʜᴀᴛ.**")
+        await message.reply_text("**no filters in this chat.**")
     else:
         keyboard = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("ʏᴇs, ᴅᴏ ɪᴛ", callback_data="stop_yes"),
-                    InlineKeyboardButton("ɴᴏ, ᴅᴏɴ'ᴛ ᴅᴏ ɪᴛ", callback_data="stop_no"),
+                    InlineKeyboardButton(
+                        "yes, do it", callback_data="stop_yes"
+                    ),
+                    InlineKeyboardButton("no, don't do it", callback_data="stop_no"),
                 ]
             ]
         )
         await message.reply_text(
-            "**ᴀʀᴇ ʏᴏᴜ sᴜʀᴇ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴅᴇʟᴇᴛᴇ ᴀʟʟ ᴛʜᴇ ғɪʟᴛᴇʀs ɪɴ ᴛʜɪs ᴄʜᴀᴛ ғᴏʀᴇᴠᴇʀ ?.**",
+            "**are you sure you want to delete all the filters in this chat forever ?.**",
             reply_markup=keyboard,
         )
 
@@ -288,7 +278,7 @@ async def stop_all_cb(_, cb):
     permission = "can_change_info"
     if permission not in permissions:
         return await cb.answer(
-            f"ʏᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴛʜᴇ ʀᴇᴄǫᴜʀɪᴇᴅ ᴘᴇʀᴍɪssɪᴏɴ.\n ᴘᴇʀᴍɪssɪᴏɴ: {permission}",
+            f"you don't have the recquried permission.\n permission: {permission}",
             show_alert=True,
         )
     input = cb.data.split("_", 1)[1]
@@ -296,7 +286,7 @@ async def stop_all_cb(_, cb):
         stoped_all = await deleteall_filters(chat_id)
         if stoped_all:
             return await cb.message.edit(
-                "**sᴜᴄᴇssғᴜʟʟʏ ᴅᴇʟᴇᴅᴇᴅ ᴀʟʟ ғɪʟᴛᴇʀ's ᴏɴ ᴛʜɪs ᴄʜᴀᴛ.**"
+                "**sucessfully deleded all filter's on this chat.**"
             )
     if input == "no":
         await cb.message.reply_to_message.delete()
