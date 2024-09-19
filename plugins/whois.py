@@ -84,21 +84,20 @@ async def whois(client, message):
         disable_web_page_preview=True,
     )
 
+__HELP__ = """<blockquote><b>
+**command:**
 
-__HELP__ = """
-**ᴄᴏᴍᴍᴀɴᴅ:**
+• /whois - **check user information.**
 
-• /whois - **ᴄʜᴇᴄᴋ ᴜsᴇʀ ɪɴғᴏʀᴍᴀᴛɪᴏɴ.**
+**info:**
 
-**ɪɴғᴏ:**
+- this bot provides a command to check user information.
+- use /whois command followed by a reply to a message or a user id to get information about the user.
 
-- ᴛʜɪs ʙᴏᴛ ᴘʀᴏᴠɪᴅᴇs ᴀ ᴄᴏᴍᴍᴀɴᴅ ᴛᴏ ᴄʜᴇᴄᴋ ᴜsᴇʀ ɪɴғᴏʀᴍᴀᴛɪᴏɴ.
-- ᴜsᴇ /whois ᴄᴏᴍᴍᴀɴᴅ ғᴏʟʟᴏᴡᴇᴅ ʙʏ ᴀ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇssᴀɢᴇ ᴏʀ ᴀ ᴜsᴇʀ ɪᴅ ᴛᴏ ɢᴇᴛ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴛʜᴇ ᴜsᴇʀ.
+**note:**
 
-**ɴᴏᴛᴇ:**
-
-- ᴛʜᴇ /whois ᴄᴏᴍᴍᴀɴᴅ ᴄᴀɴ ʙᴇ ᴜsᴇᴅ ᴛᴏ ʀᴇᴛʀɪᴇᴠᴇ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴀ ᴜsᴇʀ ɪɴ ᴛʜᴇ ᴄʜᴀᴛ.
-- ᴛʜᴇ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ɪɴᴄʟᴜᴅᴇs ᴜsᴇʀ ɪᴅ, ғɪʀsᴛ ɴᴀᴍᴇ, ʟᴀsᴛ ɴᴀᴍᴇ, ᴜsᴇʀɴᴀᴍᴇ, ᴀɴᴅ ʟᴀsᴛ sᴇᴇɴ sᴛᴀᴛᴜs.
+- the /whois command can be used to retrieve information about a user in the chat.
+- the information includes user id, first name, last name, username, and last seen status.</b></blockquote>
 """
 
-__MODULE__ = "Wʜᴏɪs"
+__MODULE__ = "WhoIs"
