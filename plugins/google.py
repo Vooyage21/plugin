@@ -59,6 +59,6 @@ async def app(bot, message):
         await message.reply_text(e)
 
 
-__MODULE__ = "Gᴏᴏɢʟᴇ"
-__HELP__ = """/google [ǫᴜᴇʀʏ] - ᴛᴏ sᴇᴀʀᴄʜ ᴏɴ ɢᴏᴏɢʟᴇ ᴀɴᴅ ɢᴇᴛ ʀᴇsᴜʟᴛs
-/app | /apps [ᴀᴘᴘ ɴᴀᴍᴇ] - ᴛᴏ ɢᴇᴛ ᴀᴘᴘ ɪɴғᴏ ᴛʜᴀᴛ ᴀᴠᴀɪʟᴀʙʟᴇ ᴏɴ ᴘʟᴀʏsᴛᴏʀᴇ"""
+__MODULE__ = "Google"
+__HELP__ = """<blockquote><b>/google [query] - to search on google and get results
+/app | /apps [app name] - to get app info that available on playstore</b></blockquote>"""
