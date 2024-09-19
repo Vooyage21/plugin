@@ -38,18 +38,18 @@ async def wall(_, message: Message):
         )
 
 
-__MODULE__ = "Wᴀʟʟ"
-__HELP__ = """
+__MODULE__ = "Wall"
+__HELP__ = """<blockquote><b>
 **COMMANDS:**
 
-• /WALL - **ᴅᴏᴡɴʟᴏᴀᴅ ᴀɴᴅ sᴇɴᴅ ᴡᴀʟʟᴘᴀᴘᴇʀ.**
+• /WALL - **download and send wallpaper.**
 
 **INFO:**
 
-- ᴛʜɪs ʙᴏᴛ ᴘʀᴏᴠɪᴅᴇs ᴀ ᴄᴏᴍᴍᴀɴᴅ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ ᴀɴᴅ sᴇɴᴅ ᴡᴀʟʟᴘᴀᴘᴇʀ.
-- ᴜsᴇ /WALL ᴄᴏᴍᴍᴀɴᴅ ᴡɪᴛʜ ᴀ ᴛᴇxᴛ ᴛᴏ sᴇᴀʀᴄʜ ғᴏʀ ᴡᴀʟʟᴘᴀᴘᴇʀ ᴀɴᴅ sᴇɴᴅ ɪᴛ ᴛᴏ ᴛʜᴇ ᴄʜᴀᴛ.
+- this bot provides a command to download and send wallpaper.
+- use /WALL command with a text to search for wallpaper and send it to the chat.
 
 **NOTE:**
 
-- ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ ᴄᴀɴ ʙᴇ ᴜsᴇᴅ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ ᴀɴᴅ sᴇɴᴅ ᴡᴀʟʟᴘᴀᴘᴇʀ.
+- this command can be used to download and send wallpaper.</b></blockquote>
 """
